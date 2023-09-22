@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .food-list {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .food-item {
+            margin: 15px;
+            background-color: #007BFF;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 200px; /* Set a fixed width for all buttons */
+            transition: transform 0.2s, background-color 0.2s;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .food-item:hover {
+            transform: translateY(-5px);
+            background-color: #0056B3;
+        }
+
+        .food-link {
+            text-decoration: none;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Make the entire .food-item clickable */
+        .food-item a {
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<script src="{% static 'voting.js' %}"></script>
+    <h1>Voting</h1>
+    <p>In this voting, we want to find out the people's most favorite {{ foodType }}</p>
+    <p>Choose your favorite {{ foodType }} food</p>
+
+    <div class="container">
+        <ul class="food-list">
+            {% for x in allFoods %}
+                {% if x.foodType == foodType %}
+                    <li class="food-item">
+                        <a href="/finish/"  onclick="myFunction('{{ allFood }}')" class="food-link">{{ x.foodName }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
